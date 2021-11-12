@@ -1,0 +1,10 @@
+<h1>BlogHype</h1>
+<%= link_to "Create Blog", :new_blog %>
+<ol class="gradient-list">
+<% @blogs.each do |blog|%>
+    <li><%= link_to "#{blog.title}", blog %>&nbsp;
+     <strong style="font-size:10px">created at: <%= blog.created_at%></strong><br><br>
+    <%= blog.text[0..200] %></li><br>
+<% end %>
+</ol>
+<%= will_paginate @blogs %>

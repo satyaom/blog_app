@@ -1,0 +1,27 @@
+
+<%= link_to "Back", :blogs %>
+
+<% unless request.post? %>
+    <%= link_to "Edit", :edit_blog %>
+<% else %>
+    <%= link_to "Edit", 'edit' %>
+<% end %>
+
+<%= link_to "Delete", @blog, :method => :delete, data: {confirm: "Are you sure?"}  %>
+<h2><%= @blog.title %></h2>
+<p><%= @blog.text %></p>
+<h1>Comments</h1>
+<%= render 'comments/form' %><br><br>
+<%@blog.comments.each do |comment| %>
+    <% if comment.id.nil? %>
+        <% next %>  
+    <% end %>
+    <p>Commenter: <%= comment.commenter %>&nbsp;&nbsp;&nbsp; created at: <%= comment.created_at %>&nbsp;&nbsp;&nbsp;
+
+    <%= link_to 'Delete', [comment.blog, comment],
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %><br>
+    comment:  <%= comment.body %>
+    <p>-----------------------------------------------------</p>
+    </p>   
+<% end %>

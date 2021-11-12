@@ -1,0 +1,178 @@
+// Place all the styles related to the blogs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+/*** FONTS ***/
+@import url(https://fonts.googleapis.com/css?family=Montserrat:900|Raleway:400,400i,700,700i);
+
+
+
+/*** VARIABLES ***/
+/* Colors */
+$black: #1d1f20;
+$blue: #83e4e2;
+$green: #a2ed56;
+$yellow: #fddc32;
+$white: #fafafa;
+
+
+
+/*** EXTEND ***/
+/* box-shadow */
+%boxshadow {
+  box-shadow: 0.25rem 0.25rem 0.6rem rgba(0,0,0,0.05), 0 0.5rem 1.125rem rgba(75,0,0,0.05);
+}
+
+
+
+/*** STYLE ***/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $white;
+  color: $black;
+  font-family: 'Raleway', sans-serif;
+}
+
+main {
+  display: block;
+  margin: 0 auto;
+  max-width: 40rem;
+  padding: 1rem;
+}
+
+
+ol.gradient-list {
+  counter-reset: gradient-counter;
+  list-style: none;
+  margin: 1.75rem 0;
+  padding-left: 1rem;
+  > li {
+    background: white;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    @extend %boxshadow;
+    counter-increment: gradient-counter;
+    margin-top: 1rem;
+    min-height: 3rem;
+    padding: 1rem 1rem 1rem 3rem;
+    position: relative;
+    &::before,
+    &::after {
+      background: linear-gradient(135deg, $blue 0%,$green 100%);
+      border-radius: 1rem 1rem 0 1rem;
+      content: '';
+      height: 3rem;
+      left: -1rem;
+      overflow: hidden;
+      position: absolute;
+      top: -1rem;
+      width: 3rem;
+    }
+    &::before {
+      align-items: flex-end;
+      @extend %boxshadow;
+      content: counter(gradient-counter);
+      color: $black;
+      display: flex;
+      font: 900 1.5em/1 'Montserrat';
+      justify-content: flex-end;
+      padding: 0.125em 0.25em;
+      z-index: 1;
+    }
+    @for $i from 1 through 5 {
+      &:nth-child(10n+#{$i}):before {
+        background: linear-gradient(135deg, rgba($green, $i * 0.2) 0%,rgba($yellow, $i * 0.2) 100%);
+      }
+    }
+    @for $i from 6 through 10 {
+      &:nth-child(10n+#{$i}):before {
+        background: linear-gradient(135deg, rgba($green, 1 - (($i - 5) * 0.2)) 0%,rgba($yellow, 1 - (($i - 5) * 0.2)) 100%);
+      }
+    }
+    + li {
+      margin-top: 2rem;
+    }
+  }
+}
+h1 {
+    color: #da4f4f;
+    text-shadow: 2px 2px 2px #da4f4f;
+}
+$shadow: -0.6rem 0.6rem 0 rgba(29, 30, 28, 0.26);
+
+* { font-family: 'Roboto', sans-serif; }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f3e3e3;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+input, button, textarea {
+    border: 2px solid rgba(0, 0, 0, 0.6);
+    background-image:none;
+    background-color: #fdfdfd;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    padding: 5px;
+    
+    &:focus {
+        outline: none;
+    }
+}
+
+textarea {
+    height: 70vh;
+    width: 80vw;
+    resize:vertical;
+}
+
+button {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.feedback {
+    &-card {
+        border: 1px solid black;
+        max-width: 980px;
+        background-color: #fff;
+        margin: 0 auto;
+        box-shadow: $shadow;
+    }
+    &-header {
+        text-align: center;
+        padding: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        border-bottom: 1px solid black;
+    }
+    &-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        
+        &__message {
+            margin-top: 10px;            
+        }
+        
+        button {
+            margin-top: 10px;
+            align-self: flex-end;
+        }
+    }
+}
